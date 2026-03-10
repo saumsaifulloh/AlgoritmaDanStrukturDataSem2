@@ -12,12 +12,12 @@ public class MataKuliah17{
     public void tampilkanInfo() {
         System.out.println("Kode MK: " + kodeMK);
         System.out.println("Nama MK: " + namaMK);
-        System.out.println("SKS: " + SKS);
+        System.out.println("SKS    : " + SKS);
         System.out.println("--------------------------------");
     }
 
-    public void ubahnamaMK(MataKuliah17 mk, String namaBaru) {
-        mk.namaMK = namaBaru;
+    public void ubahnamaMK(MataKuliah17 mk, String namaMKBaru) {
+        this.namaMK = namaMKBaru;
     }
 
     public void ubahSKS(int SKSBaru) {
