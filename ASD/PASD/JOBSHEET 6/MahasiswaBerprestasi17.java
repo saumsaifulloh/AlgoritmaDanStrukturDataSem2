@@ -1,4 +1,4 @@
-MahasiswaBerprestasi17 {
+class MahasiswaBerprestasi17 {
     Mahasiswa17[] listMhs = new Mahasiswa17[5];
     int idx;
 
@@ -12,6 +12,7 @@ MahasiswaBerprestasi17 {
         }
     }
 
+    // Bubble Sort (descending)
     void bubbleSort() {
         for (int i = 0; i < listMhs.length - 1; i++) {
             for (int j = 0; j < listMhs.length - i - 1; j++) {
@@ -22,11 +23,10 @@ MahasiswaBerprestasi17 {
                 }
             }
         }
-    } 
-    
-}
+    }
 
-void selectionSort() {
+    // Selection Sort (ascending)
+    void selectionSort() {
         for (int i = 0; i < listMhs.length - 1; i++) {
             int idxMin = i;
             for (int j = i + 1; j < listMhs.length; j++) {
@@ -37,10 +37,10 @@ void selectionSort() {
             Mahasiswa17 temp = listMhs[idxMin];
             listMhs[idxMin] = listMhs[i];
             listMhs[i] = temp;
-        
         }
     }
 
+    // Insertion Sort (ascending)
     void insertionSort() {
         for (int i = 1; i < listMhs.length; i++) {
             Mahasiswa17 temp = listMhs[i];
@@ -52,4 +52,4 @@ void selectionSort() {
             listMhs[j] = temp;
         }
     }
-
+}

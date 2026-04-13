@@ -12,3 +12,27 @@ JAWABAN PRAKTIKUM 1 5.5
 2. Tampil data menampilkan seluruh data dosen yang tersimpan.
 3. Sorting ASC mengurutkan data dosen berdasarkan usia dari termuda ke tertua menggunakan Bubble Sort.
 4. Sorting DSC mengurutkan data dosen berdasarkan usia dari tertua ke termuda menggunakan Selection Sort.
+
+JAWABAN PRAKTIKUM 5.3.4
+1. A Kenapa i < length-1
+Karena elemen terakhir otomatis sudah terurut setelah proses sebelumnya
+1. B Kenapa j < length-i
+Karena setiap iterasi, bagian belakang sudah terurut
+1. C Jika 50 data
+Perulangan i = 49 kali
+Tahap bubble sort = 49 tahap
+2. Modifikasi input keyboard
+Scanner sc = new Scanner(System.in);
+System.out.print("Masukkan NIM: ");
+nim = sc.nextLine();
+
+JAWABAN PRAKTIKUM 5.3.7 
+1. Baris program tersebut digunakan untuk:
+Menukar posisi data minimum dengan posisi saat ini
+Agar data menjadi terurut
+
+JAWABAN PRAKTIKUM 5.4.3 
+1. Agar descending, ubah:
+data[j] > temp
+menjadi:
+data[j] < temp
