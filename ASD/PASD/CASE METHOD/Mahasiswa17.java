@@ -1,6 +1,6 @@
 class Mahasiswa17 {
     String nim, nama, prodi;
-
+    
     Mahasiswa17(String nim, String nama, String prodi) {
         this.nim = nim;
         this.nama = nama;

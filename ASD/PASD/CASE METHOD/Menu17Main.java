@@ -47,6 +47,9 @@ public class Menu17Main {
                 case 5:
                     menu5();
                     break;
+                case 6:
+                    menu6();
+                    break;
                 case 0:
                     System.out.println("Keluar...");
                     break;
@@ -61,6 +64,7 @@ public class Menu17Main {
         System.out.println("3. Tampilkan Peminjaman");
         System.out.println("4. Urutkan berdasarkan  Denda"); //Insertion Sort
         System.out.println("5. Cari berdasarkan NIM"); //Binary Search
+        System.out.println("6. Tampilkan Peminjaman Tanpa Denda"); //Binary Search
         System.out.println("0. Keluar");
         System.out.print("Pilih: ");
     }
@@ -89,7 +93,7 @@ public class Menu17Main {
         }
     }
 
-    // ================= CASE 3 =================
+    // ================= CASE 4 =================
     static void menu4() {
         insertionSort(pinjam);
 
@@ -99,7 +103,7 @@ public class Menu17Main {
         }
     }
 
-    // ================= CASE 4 =================
+    // ================= CASE 5 =================
     static void menu5() {
         insertionSortNIM(pinjam);
 
@@ -113,6 +117,21 @@ public class Menu17Main {
             pinjam[hasil].tampil();
         } else {
             System.out.println("Data tidak ditemukan!");
+        }
+    }
+
+
+    static void menu6() {
+        System.out.println("\n=== PEMINJAMAN TANPA DENDA ===");
+        boolean ada = false;
+        for (Peminjaman17 p : pinjam) {
+            if (p.denda == 0) {
+                p.tampil();
+                ada = true;
+            }
+        }
+        if (!ada) {
+            System.out.println("Tidak ada peminjaman tanpa denda.");
         }
     }
 
