@@ -59,4 +59,4 @@ class MahasiswaBerprestasi17 {
         }
         return -1;
     }
-}
+}       
