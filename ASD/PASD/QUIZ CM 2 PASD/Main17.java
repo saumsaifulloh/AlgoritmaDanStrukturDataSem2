@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main17 {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -10,7 +11,9 @@ public class Main17 {
         int pilih;
 
         do {
-            System.out.println("\n=== ROYAL DELISH ===");
+            System.out.println("\n==============================");
+            System.out.println("SISTEM ANTRIAN ROYAL DELISH");
+            System.out.println("==============================");
             System.out.println("1. Tambah Antrian");
             System.out.println("2. Cetak Antrian");
             System.out.println("3. Hapus Antrian & Pesan");
@@ -21,57 +24,63 @@ public class Main17 {
             sc.nextLine();
 
             switch (pilih) {
-
                 case 1:
+                    // Tambah antrian - input nama dan no HP
                     System.out.print("Nama Pembeli : ");
                     String nama = sc.nextLine();
+                    System.out.print("No HP        : ");
+                    String noHp = sc.nextLine();
 
-                    System.out.print("No HP : ");
-                    String hp = sc.nextLine();
-
-                    antrean.tambahAntrian(nama, hp);
+                    Pembeli17 pembeli = new Pembeli17(nama, noHp);
+                    antrean.tambahAntrian(pembeli);
                     break;
 
                 case 2:
+                    // Cetak semua antrian
                     antrean.cetakAntrian();
                     break;
 
                 case 3:
-                    Pembeli17 p = antrean.hapusAntrian();
-
-                    if (p != null) {
-                        System.out.println("Pembeli : "
-                                + p.namaPembeli);
-
-                        System.out.print("Kode Pesanan : ");
-                        int kode = sc.nextInt();
-                        sc.nextLine();
-
-                        System.out.print("Nama Pesanan : ");
-                        String np = sc.nextLine();
-
-                        System.out.print("Harga : ");
-                        int harga = sc.nextInt();
-
-                        pesanan.tambahPesanan(kode,
-                                np, harga, p.namaPembeli);
-
-                        System.out.println("Pesanan berhasil ditambahkan");
+                    // Hapus antrian terdepan dan input pesanan
+                    if (antrean.isEmpty()) {
+                        System.out.println("Antrian kosong!");
+                        break;
                     }
+
+                    // Ambil pembeli pertama dari antrian
+                    Pembeli17 pembeliHapus = antrean.hapusAntrian();
+
+                    System.out.print("Kode Pesanan  : ");
+                    int kode = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Nama Pesanan  : ");
+                    String namaPesanan = sc.nextLine();
+                    System.out.print("Harga         : ");
+                    int harga = sc.nextInt();
+                    sc.nextLine();
+
+                    Pesanan17 p = new Pesanan17(kode, namaPesanan, harga);
+                    pesanan.tambahPesanan(p);
+
+                    System.out.println(pembeliHapus.namaPembeli + " telah memesan " + namaPesanan);
                     break;
 
                 case 4:
-                    pesanan.tampilPesanan();
+                    // Laporan pesanan terurut nama
+                    pesanan.cetakLaporan();
                     break;
 
                 case 0:
-                    System.out.println("Program selesai");
+                    System.out.println("Terima kasih, program selesai.");
                     break;
 
                 default:
-                    System.out.println("Menu tidak tersedia");
+                    System.out.println("Pilihan tidak valid, coba lagi.");
+                    break;
             }
 
         } while (pilih != 0);
+
+        sc.close();
     }
 }

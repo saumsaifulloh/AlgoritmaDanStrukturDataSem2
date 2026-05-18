@@ -1,78 +1,89 @@
 public class DLLPesanan17 {
 
-    Pesanan17 head, tail;
+    // Node dalam DLL untuk Pesanan
+    class NodePesanan {
+        Pesanan17 data;
+        NodePesanan prev;
+        NodePesanan next;
 
-    public void tambahPesanan(int kode, String namaPesanan, int harga, String namaPembeli) {
+        NodePesanan(Pesanan17 data) {
+            this.data = data;
+            this.prev = null;
+            this.next = null;
+        }
+    }
 
-        Pesanan17 baru = new Pesanan17(kode, namaPesanan, harga, namaPembeli);
+    NodePesanan head;
+    NodePesanan tail;
+    int ukuran;
+
+    public DLLPesanan17() {
+        head = null;
+        tail = null;
+        ukuran = 0;
+    }
+
+    // Tambah pesanan di belakang
+    public void tambahPesanan(Pesanan17 pesanan) {
+        NodePesanan nodeBaru = new NodePesanan(pesanan);
 
         if (head == null) {
-            head = tail = baru;
+            head = nodeBaru;
+            tail = nodeBaru;
         } else {
-            tail.next = baru;
-            baru.prev = tail;
-            tail = baru;
+            nodeBaru.prev = tail;
+            tail.next = nodeBaru;
+            tail = nodeBaru;
         }
+        ukuran++;
     }
 
-    public void sorting() {
+    // Sorting manual berdasarkan nama pesanan (Bubble Sort)
+    public void sortByNama() {
+        if (head == null || head.next == null) return;
 
-        if (head == null) {
-            return;
-        }
-
-        for (Pesanan17 i = head; i.next != null; i = i.next) {
-
-            for (Pesanan17 j = head; j.next != null; j = j.next) {
-
-                if (j.namaPesanan.compareToIgnoreCase(j.next.namaPesanan) > 0) {
-
-                    int kode = j.kodePesanan;
-                    String nama = j.namaPesanan;
-                    int harga = j.harga;
-                    String pembeli = j.namaPembeli;
-
-                    j.kodePesanan = j.next.kodePesanan;
-                    j.namaPesanan = j.next.namaPesanan;
-                    j.harga = j.next.harga;
-                    j.namaPembeli = j.next.namaPembeli;
-
-                    j.next.kodePesanan = kode;
-                    j.next.namaPesanan = nama;
-                    j.next.harga = harga;
-                    j.next.namaPembeli = pembeli;
+        boolean swap;
+        do {
+            swap = false;
+            NodePesanan current = head;
+            while (current.next != null) {
+                if (current.data.namaPesanan.compareToIgnoreCase(current.next.data.namaPesanan) > 0) {
+                    // tukar data
+                    Pesanan17 temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                    swap = true;
                 }
+                current = current.next;
             }
-        }
+        } while (swap);
     }
 
-    public void tampilPesanan() {
-
+    // Tampilkan laporan pesanan terurut berdasarkan nama
+    public void cetakLaporan() {
         if (head == null) {
-            System.out.println("Belum ada pesanan");
+            System.out.println("Belum ada pesanan.");
             return;
         }
 
-        sorting();
+        sortByNama();
 
-        Pesanan17 temp = head;
-        int total = 0;
+        System.out.println("======================================");
+        System.out.println("LAPORAN PESANAN (URUT NAMA PESANAN)");
+        System.out.println("======================================");
+        System.out.printf("%-15s %-25s %-10s%n", "Kode Pesanan", "Nama Pesanan", "Harga");
 
-        System.out.println("=== LAPORAN PESANAN ===");
-
-        while (temp != null) {
-
-            System.out.println(
-                    temp.kodePesanan + " | " +
-                    temp.namaPesanan + " | " +
-                    temp.harga + " | " +
-                    temp.namaPembeli);
-
-            total += temp.harga;
-
-            temp = temp.next;
+        NodePesanan current = head;
+        while (current != null) {
+            System.out.printf("%-15d %-25s %-10d%n",
+                    current.data.kodePesanan,
+                    current.data.namaPesanan,
+                    current.data.harga);
+            current = current.next;
         }
+    }
 
-        System.out.println("Total Pendapatan : " + total);
+    public boolean isEmpty() {
+        return head == null;
     }
 }
