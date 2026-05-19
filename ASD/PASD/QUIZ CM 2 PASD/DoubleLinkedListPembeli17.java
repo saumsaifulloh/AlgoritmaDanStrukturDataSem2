@@ -44,7 +44,7 @@ public class DoubleLinkedListPembeli17 {
         System.out.println("Antrian berhasil ditambahkan dengan nomor: " + pembeli.noAntrian);
     }
 
-    // Cetak semua antrian
+    // Cetak semua antrian (maju: head -> tail)
     public void cetakAntrian() {
         if (head == null) {
             System.out.println("Antrian kosong.");
@@ -62,6 +62,36 @@ public class DoubleLinkedListPembeli17 {
                     current.data.noHp);
             current = current.next;
         }
+        System.out.println("==============================");
+        System.out.println("Total pembeli dalam antrian : " + ukuran);
+        System.out.println("==============================");
+    }
+
+    
+    // FITUR BARU: Traversal Mundur (tail -> head) via pointer prev
+    public void cetakAntrianMundur() {
+        if (tail == null) {
+            System.out.println("Antrian kosong.");
+            return;
+        }
+        System.out.println("==============================");
+        System.out.println(" Antrian (Terakhir -> Pertama)");
+        System.out.println("==============================");
+        System.out.printf("%-15s %-20s %-15s%n", "No Antrian", "Nama", "No HP");
+
+        // Mulai dari tail, lalu ikuti pointer prev ke head
+        NodePembeli current = tail;
+        while (current != null) {
+            System.out.printf("%-15d %-20s %-15s%n",
+                    current.data.noAntrian,
+                    current.data.namaPembeli,
+                    current.data.noHp);
+            current = current.prev; // <-- gunakan pointer prev
+        }
+
+        System.out.println("==============================");
+        System.out.println("Total pembeli dalam antrian : " + ukuran);
+        System.out.println("==============================");
     }
 
     // Hapus antrian terdepan (dequeue) dan kembalikan data pembeli

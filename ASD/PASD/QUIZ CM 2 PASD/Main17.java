@@ -18,6 +18,7 @@ public class Main17 {
             System.out.println("2. Cetak Antrian");
             System.out.println("3. Hapus Antrian & Pesan");
             System.out.println("4. Laporan Pesanan");
+            System.out.println("5. Cetak Antrian Mundur");  // <-- MENU BARU
             System.out.println("0. Keluar");
             System.out.print("Pilih menu : ");
             pilih = sc.nextInt();
@@ -36,7 +37,7 @@ public class Main17 {
                     break;
 
                 case 2:
-                    // Cetak semua antrian
+                    // Cetak semua antrian (maju)
                     antrean.cetakAntrian();
                     break;
 
@@ -68,6 +69,13 @@ public class Main17 {
                 case 4:
                     // Laporan pesanan terurut nama
                     pesanan.cetakLaporan();
+                    break;
+
+                case 5:
+                    // -----------------------------------------------
+                    // FITUR BARU: Traversal mundur menggunakan ptr prev
+                    // -----------------------------------------------
+                    antrean.cetakAntrianMundur();
                     break;
 
                 case 0:
